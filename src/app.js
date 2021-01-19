@@ -6,6 +6,7 @@ const forecast=require('./utils/forecast')
 const app = express()
 // Define paths for Express config
 const publicDirectoryPath = path.join(__dirname, '../public')
+const port=process.env.PORT || 3000
 //console.log(publicDirectoryPath)
 const viewsPath = path.join(__dirname, '../templates/views')
 //console.log(viewsPath)
@@ -17,6 +18,7 @@ app.set('views', viewsPath)
 hbs.registerPartials(partialspath)
 // Setup static directory to serve
 app.use(express.static(publicDirectoryPath))
+
 app.get('', (req, res) => {
     res.render('index', {
         title: 'Weather',
@@ -85,6 +87,6 @@ app.get('*',(req,res)=>{
         author:'piyush'
     })
 })
-app.listen(3000, () => {
-    console.log('Server is up on port 3000.')
+app.listen(port, () => {
+    console.log('Server is up on port '+ port)
 })
